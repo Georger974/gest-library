@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>exercice objet</title>
+  <link rel="stylesheet" href="sty.css">
+  <link rel="stylesheet"
+    href="https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-straight/css/uicons-regular-straight.css" />
+</head>
+
+<body>
+  <h1>BIBLIOTHEQUE</h1>
+
+  <div class="container">
+    <div class="nav-bar">
+      <div class="enter">
+        <div class="title">
+          <label>Le titre du livre: <input type="text" name="nom" id="nom"><label></label>
+
+            </textarea></label>
+
+        </div>
+
+        <div class="pages">
+          <label> Le nombre de pages: <input type="text" name="page " id="page"></label>
+
+        </div>
+      </div>
+      <div class="nav_outil">
+        <div class="arch">
+          <button id="btn">Archiver</button>
+
+          <i class="fi fi-rs-box"></i>
+          <span>0</span>
+        </div>
+        <div class="loupe">
+          <input type="search" id="search" placeholde="rechercher">
+          <i class="fi fi-rs-search"></i>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+    <section>
+      <div class="grille">
+        <div class="grid-item1">
+          <div class="screen">
+            <img src="" alt="">
+          </div>
+        </div>
+
+        <div class="grid-item2">
+          <div class="auteur">
+            <h3>Auteur: </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, ad?</p>
+          </div>
+
+        </div>
+        <p>
+        <div class="grid-item3">
+          <h3>Synoptsis: </h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas quos maiores quia
+          et
+          impedit, eveniet, ducimus adipisci doloribus, quasi odit reprehenderit dolorum! Dolor odio quibusdam
+          quia reprehenderit neque illo dignissimos!
+
+
+          </p>
+
+        </div>
+
+        <!-- <div class="box"> -->
+
+        <!-- </div> -->
+
+        <i class="fi fi-br-angle-left"></i>
+        <i class="fi fi-bs-angle-right"></i>
+
+      </div>
+      <div class="down-right">
+        <div class="affichage">
+          <h3>ARCHIVE</h3>
+          <div class="liste">
+            <ul id="ul"></ul>
+          </div>
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+
+
+
+
+  </div>
+
+  <script>
+
+
+
+    class Book {
+
+      constructor(title, pages) {
+        this.title = title;
+        this.pages = pages;
+        //this.auteur = "auteur";
+        //this.synop = "synop";
+      }
+    }
+    /* *************************LIBRARY******************************** */
+    class Library {
+      #list_book = []
+      _new_list = []
+
+      addBook(book) {
+        this.#list_book.push(book)
+        console.log(this.#list_book)
+      }
+      get nb_books() {
+        return this.#list_book.length
+      }
+      search(para) {
+        for (let elem of this.#list_book) {
+          for (let key in elem) {
+            if (key === para && !(this._new_list.includes(elem[key]))) { this._new_list.push(elem[key]) }
+          }
+        }
+        //console.log(this._new_list)
+      }
+
+
+
+      get resum() {
+        return this._new_list
+      }
+      get contenu_library() {
+        return this.#list_book
+      }
+
+
+    }
+    /* ****************************************LES FONCTIONS************************************************ */
+    //let ul = document.getElementById('ul');
+    let liste = document.querySelector('.liste');
+    function display_liste(tab) {
+      let balise_ul = "<ul>";
+      //let txt = "";
+      for (let val of tab) {
+        balise_ul += "<li>" + "Titre:" + val.title + "<br>" + "Nb de pages:" + val.pages + "</li>" + "<br>"
+        //txt += "<li>" + "Titre:" + val.title + "<br>" + " Nb de pages: " + val.pages + "</li>" + "<br>"
+
+      }
+      balise_ul += "</ul>"
+      liste.innerHTML = balise_ul;
+      //ul.innerHTML = txt;
+    }
+
+    let items;
+    function read_liens() {
+      items = document.querySelectorAll('.liste ul li ')
+
+      items.forEach((el) => {
+        el.addEventListener('mouseover', (e) => {
+          console.log(e)
+          if (e.isTrusted === true) {
+            e.target.classList.add('surbrillance')
+
+          } else { e.target.classList.remove('surbrillance') }
+          //}
+        })
+      })
+
+    }
+
+    /* ***************************************LES INPUTS******************************************* */
+    let nom = document.getElementById('nom');
+    nom.addEventListener('input', () => {
+      title_enter = nom.value
+      return title_enter
+    })
+
+    let page = document.getElementById('page');
+    page.addEventListener('input', () => {
+      pages_enter = page.value
+      return pages_enter
+    })
+
+    let res = [];
+    let loupe = document.querySelector('.loupe>i');
+    let n = 0;
+    let titre = document.querySelector('h1')
+    loupe.addEventListener('click', (e) => {
+      console.log(e)
+      if (key.innerHTML === "") {
+
+        aff.classList.remove('trans');
+        titre.style.color = "red";
+      }
+
+    } else {
+      aff.classList.add('trans');
+      n >= 1 ? liste.innerHTML = "" : n++;
+    l.search(para_search)
+    console.log(l.resum)
+
+    let txt = "<ul>";
+    l.resum.forEach((value, index, array) => {
+      txt += "<li>" + value + "</li>" + "<br>"
+    }
+    )
+    liste.innerHTML = txt;
+    read_liens()
+      }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+    let key = document.getElementById('search');
+    let para_search = "";
+    key.addEventListener('input', () => {
+      switch (key.value) {
+        case "auteur":
+          para_search = "auteur"
+          break;
+        case "pages":
+          para_search = "pages"
+          break;
+
+        case "title":
+          para_search = "title"
+          break;
+
+        case "":
+          para_search = null
+
+          break;
+        default:
+
+      }
+
+    })
+
+    /* **************************************************ARCHIVAGE***************************************************** */
+
+    let btn = document.getElementById('btn');
+    btn.addEventListener('click', () => {
+      l.addBook(new Book(title_enter, pages_enter))
+      let span = document.querySelector('span');
+      span.innerText = l.nb_books;
+      nom.value = "";
+      page.value = "";
+
+      let n = 0;
+      span.style.color = "red";
+      span.style.backgroundColor = "black";
+      boite.classList.add('archive');
+      const r = setInterval(function () {
+        n += 1;
+        if (n == 1) {
+          boite.classList.remove('archive');
+          span.style.color = "black";
+          span.style.backgroundColor = "white";
+
+          clearInterval(r)
+
+        }
+      }, 1500)
+      n = 0;
+    })
+    /* ******************************************************AFFICHAGE BOITE********************************************** */
+
+    let aff = document.querySelector('.affichage');
+    let boite = document.querySelector('i');
+    boite.addEventListener('click', () => {
+
+      aff.classList.toggle('trans');
+
+      display_liste(l.contenu_library)
+
+      read_liens()
+    })
+    /* let synoptsis = document.getElementById('');
+    synoptsis.addEventListener('input', ()=>{
+       synop = synoptsis.value ;
+   })
+   let auteur  = document.getElementById('');
+   auteur.addEventListener('input', ()=>{
+       synop = auteur.value ;
+   })*/
+
+
+    //let liste = document.querySelector('.liste>ul');
+
+
+    /* ******************************************MAIN***************************************** */
+    const l = new Library()
+
+
+
+  </script>
+</body>
+
+</html>
